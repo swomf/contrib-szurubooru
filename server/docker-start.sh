@@ -5,4 +5,5 @@ cd /opt/app
 alembic upgrade head
 
 echo "Starting szurubooru API on port ${PORT} - Running on ${THREADS} threads"
-exec waitress-serve-3 --port ${PORT} --threads ${THREADS} szurubooru.facade:app
+# FIXME: magic number. constants should be moved to an .env or .yaml file
+exec waitress-serve-3 --port ${PORT} --threads ${THREADS} --max-request-body-size 2147483648 szurubooru.facade:app
