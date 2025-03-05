@@ -5,7 +5,8 @@
 services:
 
   server:
-    image: szurubooru/server:latest
+    build:
+      context: ./server
     depends_on:
       - sql
     environment:
@@ -25,7 +26,8 @@ services:
       - "./server/config.yaml:/opt/app/config.yaml"
 
   client:
-    image: szurubooru/client:latest
+    build:
+      context: ./client
     depends_on:
       - server
     environment:
